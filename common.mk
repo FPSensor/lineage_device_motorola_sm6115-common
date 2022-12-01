@@ -13,7 +13,7 @@
 # limitations under the License.
 
 # Platform Path
-PLATFORM_COMMON_PATH := device/motorola/sm4250-common
+COMMON_PATH := device/motorola/sm6115-common
 
 # Platform
 BENGAL := bengal
@@ -21,23 +21,18 @@ TARGET_KERNEL_VERSION := 4.19
 PRODUCT_PLATFORM_MOT := true
 TARGET_BOARD_PLATFORM := $(BENGAL)
 
-# Kernel Headers
-#ifeq ($(TARGET_BUILDS_AOSP),true)
-PRODUCT_VENDOR_KERNEL_HEADERS := device/motorola/sm4250-common-kernel/kernel-headers
-#endif
-
 # Rootdir Path
-MOTOROLA_ROOT := $(PLATFORM_COMMON_PATH)/rootdir
+MOTOROLA_ROOT := $(COMMON_PATH)/rootdir
 
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += \
-    $(PLATFORM_COMMON_PATH)/overlay
+    $(COMMON_PATH)/overlay
 
 # Camera
 TARGET_USES_64BIT_CAMERA := true
 
 # BT definitions for Qualcomm solution
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(PLATFORM_COMMON_PATH)/bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(COMMON_PATH)/bluetooth
 
 # Dynamic Partitions: Enable DP
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
@@ -63,8 +58,8 @@ PRODUCT_PACKAGES += \
     update_engine_client \
     update_engine_sideload \
     update_verifier \
-    bootctrl.sm4250-common \
-    bootctrl.sm4250-common.recovery
+    bootctrl.sm6115-common \
+    bootctrl.sm6115-common.recovery
 
 AB_OTA_PARTITIONS += \
     boot \
@@ -72,8 +67,7 @@ AB_OTA_PARTITIONS += \
     product \
     system \
     vendor \
-    vbmeta \
-    vbmeta_system
+    vbmeta
 
 # Dynamic Partitions: build fastbootd
 PRODUCT_PACKAGES += \
@@ -170,7 +164,5 @@ PRODUCT_USES_PIXEL_USB_HAL := true
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.default_network=10,10
 
-$(call inherit-product, device/motorola/common/common.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
-$(call inherit-product, vendor/motorola/sm4250-common/sm4250-common-vendor.mk)

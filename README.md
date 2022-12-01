@@ -1,9 +1,8 @@
-SM4250 platform
+SM6115 platform
 ============
 
 ## Copyrights
 Copyright (C) LineageOS Modded Project/Electimon 2022
-
 Copyright (C) Sony Mobile Communications 2019
 
 ## Device Tree
